@@ -20,7 +20,7 @@
             <div class="flex-grow-1">
 
                 <div class="form-group mb-4">
-                    <h1>Project</h1>
+                    <h1><wicket:message key="project">Project</wicket:message></h1>
                     <div wicket:id="projectRadioGroup">
                         <div class="d-flex flex-wrap">
                             <wicket:container wicket:id="projectRadios">
@@ -34,46 +34,46 @@
                 </div>
 
                 <div class="form-group mb-4">
-                    <h1>Wicket Version</h1>
-                    <select class="form-select" wicket:id="wicketVersions"></select>
+                    <h1><wicket:message key="wicket-version">Wicket Version</wicket:message></h1>
+                    <select class="form-select required" required="required" wicket:id="wicketVersions"></select>
                 </div>
 
                 <div id="project-metadata" class="mb-4">
-                    <h1>Project Metadata</h1>
+                    <h1><wicket:message key="project-metadata">Project Metadata</wicket:message></h1>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">Group</label>
+                        <label class="col-form-label col-lg-3"><wicket:message key="project-group">Group</wicket:message></label>
                         <div class="col-lg-9">
-                            <input class="form-control" wicket:id2="group" type="text" placeholder="com.example"/>
+                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="com.example"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">Artifact</label>
+                        <label class="col-form-label col-lg-3"><wicket:message key="project-artifact">Artifact</wicket:message></label>
                         <div class="col-lg-9">
-                            <input class="form-control" wicket:id2="group" type="text" placeholder="demo"/>
+                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="demo"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">Name</label>
+                        <label class="col-form-label col-lg-3"><wicket:message key="project-name">Name</wicket:message></label>
                         <div class="col-lg-9">
-                            <input class="form-control" wicket:id2="group" type="text" placeholder="demo"/>
+                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="demo"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">Description</label>
+                        <label class="col-form-label col-lg-3"><wicket:message key="project-description">Description</wicket:message></label>
                         <div class="col-lg-9">
-                            <input class="form-control" wicket:id2="group" type="text" placeholder="Demo project for Apache Wicket"/>
+                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="Demo project for Apache Wicket"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">Package name</label>
+                        <label class="col-form-label col-lg-3"><wicket:message key="project-package-name">Package Name</wicket:message></label>
                         <div class="col-lg-9">
-                            <input class="form-control" wicket:id2="group" type="text" placeholder="com.example.demo"/>
+                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="com.example.demo"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group mb-3">
-                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>Generate Project</button>
+                    <button type="submit" class="btn btn-primary" data-mdb-ripple-init>Generate Project</button>
                 </div>
             </div>
         </div>
@@ -81,6 +81,14 @@
         <hr class="d-block d-lg-none"/>
 
         <div id="dependencies" class="col-12 col-lg-6">
+            <div class="header d-flex justify-content-between align-items-center mb-3 mb-lg-0">
+                <h1 class="d-lg-inline d-none m-0"><wicket:message key="dependencies">Dependencies</wicket:message></h1>
+                <input type="button" class="btn btn-success" wicket:id2="selectDependencies" wicket:message="value:select-dependencies" />
+            </div>
+            <hr class="d-lg-block d-none" />
+            <div class="content">
+
+            </div>
         </div>
 
     </form>

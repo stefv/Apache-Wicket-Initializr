@@ -14,7 +14,7 @@ h1 {
     }
 }
 
-#dependencies {
+#dependencies .content {
     min-height: 200px;
     background-color: azure;
 }

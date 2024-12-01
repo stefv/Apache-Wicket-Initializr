@@ -17,6 +17,7 @@ package my.project.wicket.initializr.pages;
 
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import my.project.wicket.initializr.beans.ArtifactVersionViewBean;
+import my.project.wicket.initializr.panels.ArtifactVersionDropDownChoice;
 import my.project.wicket.initializr.services.IMavenCentralQueryService;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
@@ -90,7 +91,7 @@ public class HomePage extends WebPage {
         if (wicketVersion == null) {
             wicketVersion = versions.stream().findFirst().orElse(null);
         }
-        return new DropDownChoice<>("wicketVersions", Model.of(wicketVersion), versions, new LambdaChoiceRenderer<>(ArtifactVersionViewBean::getVersion));
+        return new ArtifactVersionDropDownChoice("wicketVersions", Model.of(wicketVersion), versions);
     }
 
     /**

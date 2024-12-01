@@ -82,6 +82,7 @@
                     <include>**/*.css</include>
                     <include>**/*.svg</include>
                     <include>**/*.html</include>
+                    <include>**/*.properties</include>
                     <include>application.yml</include>
                 </includes>
             </resource>
