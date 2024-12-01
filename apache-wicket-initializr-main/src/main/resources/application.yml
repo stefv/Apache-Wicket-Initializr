@@ -1,0 +1,13 @@
+logging:
+  level:
+    root: info
+
+wicket:
+  verifier:
+    dependencies:
+      enabled: false
+
+spring:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml

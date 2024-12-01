@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body class="container">
+
+<header class="d-flex d-xxl-flex flex-row align-items-xxl-center mt-3">
+    <div id="logo">
+        <img wicket:id="apacheWicketLogo" alt="Apache Wicket Logo" src="#"/>
+    </div>
+    <span class="title mx-3">Apache Wicket Initializr</span>
+</header>
+
+<hr/>
+
+<div class="container">
+
+    <form wicket:id="form" class="row gx-3">
+
+        <div id="settings" class="col-12 col-lg-6 d-flex">
+
+            <div class="flex-grow-1">
+
+                <div class="form-group mb-4">
+                    <h1>Project</h1>
+                    <div wicket:id="projectRadioGroup">
+                        <div class="d-flex flex-wrap">
+                            <wicket:container wicket:id="projectRadios">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" wicket:id="projectRadio" type="radio"/>
+                                    <label class="form-check-label text-nowrap" wicket:id="projectLabel">[label]</label>
+                                </div>
+                            </wicket:container>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <h1>Wicket Version</h1>
+                    <select class="form-select" wicket:id="wicketVersions"></select>
+                </div>
+
+                <div id="project-metadata" class="mb-4">
+                    <h1>Project Metadata</h1>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Group</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" wicket:id2="group" type="text" placeholder="com.example"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Artifact</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" wicket:id2="group" type="text" placeholder="demo"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" wicket:id2="group" type="text" placeholder="demo"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Description</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" wicket:id2="group" type="text" placeholder="Demo project for Apache Wicket"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Package name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" wicket:id2="group" type="text" placeholder="com.example.demo"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>Generate Project</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="d-block d-lg-none"/>
+
+        <div id="dependencies" class="col-12 col-lg-6">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+header .title {
+    font-family: 'Roboto', serif;
+    font-size: xx-large;
+}
+
+h1 {
+    font-size: 1.25rem !important;
+    color: #ff9925 !important
+}
+
+@media (min-width: 992px) {
+    #settings {
+        border-right: 1px solid #D1D3D5;
+    }
+}
+
+#dependencies {
+    min-height: 200px;
+    background-color: azure;
+}
