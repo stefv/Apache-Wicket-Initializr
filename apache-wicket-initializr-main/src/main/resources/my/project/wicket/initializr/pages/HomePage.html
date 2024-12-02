@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body class="container">
 
-<nav class="navbar navbar-expand-sm bg-body-tertiary mb-3 p-3">
+<nav class="navbar navbar-expand-sm bg-body-tertiary m-0 p-3">
     <div class="container-fluid p-0">
         <a class="navbar-brand" href="./">
             <img wicket:id="apacheWicketLogo" alt="Apache Wicket Logo" src="#"/>
@@ -24,9 +24,9 @@
 
 <div class="container">
 
-    <form wicket:id="form" class="row gx-3">
+    <form wicket:id="form" class="row gx-3 my-0">
 
-        <div id="settings" class="col-12 col-lg-6 d-flex">
+        <div id="settings" class="col-12 col-lg-6 d-flex py-3">
 
             <div class="flex-grow-1">
 
@@ -58,43 +58,46 @@
                         <wicket:message key="project-metadata">Project Metadata</wicket:message>
                     </h1>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">
+                        <label class="col-form-label col-lg-4">
                             <wicket:message key="project-group">Group</wicket:message>
+                            <span class="text-danger">*</span>
                         </label>
-                        <div class="col-lg-9">
-                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="com.example"/>
+                        <div class="col-lg-8">
+                            <input class="form-control" required="required" wicket:id="group" type="text" placeholder="com.example"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">
+                        <label class="col-form-label col-lg-4">
                             <wicket:message key="project-artifact">Artifact</wicket:message>
+                            <span class="text-danger">*</span>
                         </label>
-                        <div class="col-lg-9">
-                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="demo"/>
+                        <div class="col-lg-8">
+                            <input class="form-control" required="required" wicket:id="artifact" type="text" placeholder="demo"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">
+                        <label class="col-form-label col-lg-4">
                             <wicket:message key="project-name">Name</wicket:message>
                         </label>
-                        <div class="col-lg-9">
-                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="demo"/>
+                        <div class="col-lg-8">
+                            <input class="form-control" wicket:id="name" type="text" placeholder="demo"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">
+                        <label class="col-form-label col-lg-4">
                             <wicket:message key="project-description">Description</wicket:message>
                         </label>
-                        <div class="col-lg-9">
-                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="Demo project for Apache Wicket"/>
+                        <div class="col-lg-8">
+                            <textarea class="form-control mb-1 description" wicket:id="description" wicket:message="placeholder:project-description.placeholder"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3">
+                        <label class="col-form-label col-lg-4">
                             <wicket:message key="project-package-name">Package Name</wicket:message>
+                            <span class="text-danger">*</span>
                         </label>
-                        <div class="col-lg-9">
-                            <input class="form-control required" required="required" wicket:id2="group" type="text" placeholder="com.example.demo"/>
+                        <div class="col-lg-8">
+                            <input class="form-control" required="required" wicket:id="packageName" type="text" placeholder="com.example.demo"/>
                         </div>
                     </div>
                 </div>
@@ -123,10 +126,8 @@
                 </div>
             </div>
         </div>
-
         <hr class="d-block d-lg-none"/>
-
-        <div id="dependencies" class="col-12 col-lg-6">
+        <div id="dependencies" class="col-12 col-lg-6 py-3">
             <div class="header d-flex justify-content-between align-items-center mb-3 mb-lg-0">
                 <h1 class="d-lg-inline d-none m-0">
                     <wicket:message key="dependencies">Dependencies</wicket:message>

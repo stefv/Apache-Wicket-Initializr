@@ -18,6 +18,7 @@ package my.project.wicket.initializr.pages;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6CssReference;
 import my.project.wicket.initializr.beans.ArtifactVersionViewBean;
+import my.project.wicket.initializr.behavors.BootstrapTextFieldValidatorBehavior;
 import my.project.wicket.initializr.panels.ArtifactVersionDropDownChoice;
 import my.project.wicket.initializr.services.IMavenCentralQueryService;
 import org.apache.wicket.AttributeModifier;
@@ -34,6 +35,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.StatelessForm;
+import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -44,6 +47,7 @@ import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.PatternValidator;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.Arrays;
@@ -69,6 +73,12 @@ public class HomePage extends WebPage {
     private ArtifactVersionViewBean wicketVersion;
 
     /**
+     * Constructor.
+     */
+    public HomePage() {
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -83,7 +93,78 @@ public class HomePage extends WebPage {
         form.add(newProject());
         form.add(newWicketVersion());
         form.add(newPackaging());
+        form.add(newProjectMetadataGroup());
+        form.add(newProjectMetadataArtifact());
+        form.add(newProjectMetadataName());
+        form.add(newProjectMetadataDescription());
+        form.add(newProjectMetadataPackageName());
         add(form);
+    }
+
+    /**
+     * Create the project metadata group.
+     *
+     * @return The new project metadata group.
+     */
+    private Component newProjectMetadataGroup() {
+        final String PATTERN = "^[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$";
+        final TextField<String> group = new TextField<>("group", Model.of(""));
+        group.setRequired(true);
+        group.validate();
+        group.add(new AttributeModifier("pattern", PATTERN));
+        group.add(new PatternValidator(PATTERN));
+        group.add(new BootstrapTextFieldValidatorBehavior());
+        return group;
+    }
+
+    /**
+     * Create the project metadata artifact.
+     *
+     * @return The new project metadata artifact.
+     */
+    private Component newProjectMetadataArtifact() {
+        final String PATTERN = "^[a-zA-Z0-9_\\-\\.]+$";
+        final TextField<String> artifact = new TextField<>("artifact", Model.of(""));
+        artifact.setRequired(true);
+        artifact.validate();
+        artifact.add(new AttributeModifier("pattern", PATTERN));
+        artifact.add(new PatternValidator(PATTERN));
+        artifact.add(new BootstrapTextFieldValidatorBehavior());
+        return artifact;
+    }
+
+    /**
+     * Create the project metadata package name.
+     *
+     * @return The new project metadata package name.
+     */
+    private Component newProjectMetadataPackageName() {
+        final String PATTERN = "^[a-z]+(\\.[a-z][a-z0-9_]*)*$";
+        final TextField<String> packageName = new TextField<>("packageName", Model.of(""));
+        packageName.setRequired(true);
+        packageName.validate();
+        packageName.add(new AttributeModifier("pattern", PATTERN));
+        packageName.add(new PatternValidator(PATTERN));
+        packageName.add(new BootstrapTextFieldValidatorBehavior());
+        return packageName;
+    }
+
+    /**
+     * Create the project metadata name.
+     *
+     * @return The new project metadata name.
+     */
+    private Component newProjectMetadataName() {
+        return new TextField<>("name", Model.of(""));
+    }
+
+    /**
+     * Create the project metadata description.
+     *
+     * @return The new project metadata description.
+     */
+    private Component newProjectMetadataDescription() {
+        return new TextArea<>("description", Model.of(""));
     }
 
     /**

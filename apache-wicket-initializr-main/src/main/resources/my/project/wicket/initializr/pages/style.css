@@ -1,6 +1,17 @@
+:root {
+    --initializr-nav-height: 80px;
+}
+
 header .title {
     font-family: 'Roboto', serif;
     font-size: xx-large;
+}
+
+nav {
+    height: var(--initializr-nav-height);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav .navbar-brand img {
@@ -10,6 +21,10 @@ nav .navbar-brand img {
 h1 {
     font-size: 1.25rem !important;
     color: #ff9925 !important
+}
+
+#settings {
+    min-height: calc(100vh - var(--initializr-nav-height));
 }
 
 @media (min-width: 992px) {
@@ -25,4 +40,9 @@ h1 {
 
 i.help {
     color: lightgrey;
+}
+
+textarea.description {
+    max-height: 150px;
+    overflow-y: auto;
 }
