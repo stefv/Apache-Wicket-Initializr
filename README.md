@@ -1,3 +1,5 @@
+[![Java CI with Maven](https://github.com/stefv/Apache-Wicket-Initializr/actions/workflows/maven.yml/badge.svg)](https://github.com/stefv/Apache-Wicket-Initializr/actions/workflows/maven.yml)
+
 # Apache-Wicket-Initializr
 An initializer to create quickly an Apache Wicket projet. 
 
