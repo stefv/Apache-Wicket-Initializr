@@ -16,13 +16,18 @@
 package my.project.wicket.initializr.pages;
 
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6CssReference;
 import my.project.wicket.initializr.beans.ArtifactVersionViewBean;
 import my.project.wicket.initializr.panels.ArtifactVersionDropDownChoice;
 import my.project.wicket.initializr.services.IMavenCentralQueryService;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -33,6 +38,7 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
@@ -76,6 +82,7 @@ public class HomePage extends WebPage {
         final Form<Void> form = new StatelessForm<>("form");
         form.add(newProject());
         form.add(newWicketVersion());
+        form.add(newPackaging());
         add(form);
     }
 
@@ -121,6 +128,33 @@ public class HomePage extends WebPage {
     }
 
     /**
+     * Create the packaging component.
+     *
+     * @return The new packaging component.
+     */
+    protected Component newPackaging() {
+        // Prepare the project types
+        final LinkedHashSet<Packaging> options = new LinkedHashSet<>(Arrays.stream(Packaging.values()).toList());
+        final Model<Packaging> selectedOption = Model.of(options.stream().findFirst().orElse(null));
+        final RadioGroup<Packaging> radioGroup = new RadioGroup<>("packagingRadioGroup", selectedOption);
+        final ListView<Packaging> radioList = new ListView<>("packagingRadios", options.stream().toList()) {
+            @Override
+            protected void populateItem(ListItem<Packaging> item) {
+                final Packaging packaging = item.getModelObject();
+                final Radio<Packaging> packagingRadio = new Radio<>("packagingRadio", Model.of(packaging));
+                packagingRadio.setOutputMarkupId(true);
+                final Label packagingLabel = new Label("packagingLabel", packaging.getLabel());
+                packagingLabel.add(AttributeModifier.append("for", packagingRadio.getMarkupId()));
+                final WebMarkupContainer popoverIcon = new WebMarkupContainer("packagingPopover");
+                popoverIcon.add(new AttributeAppender("data-bs-content", new StringResourceModel(packaging.getKey(), HomePage.this)));
+                item.add(packagingRadio, packagingLabel, popoverIcon);
+            }
+        };
+        radioGroup.add(radioList);
+        return radioGroup;
+    }
+
+    /**
      * Create the Apache Wicket logo in the header.
      *
      * @return The Apache Wicket logo.
@@ -141,5 +175,7 @@ public class HomePage extends WebPage {
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         response.render(CssContentHeaderItem.forReference(new CssResourceReference(HomePage.class, "style.css")));
+        response.render(CssHeaderItem.forReference(FontAwesome6CssReference.instance()));
+        response.render(OnDomReadyHeaderItem.forScript("const popoverTriggerList = document.querySelectorAll('[data-bs-toggle=\"popover\"]');const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, {trigger:'focus'}));"));
     }
 }

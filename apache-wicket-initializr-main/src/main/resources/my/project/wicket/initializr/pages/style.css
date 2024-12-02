@@ -3,6 +3,10 @@ header .title {
     font-size: xx-large;
 }
 
+nav .navbar-brand img {
+    width: 250px;
+}
+
 h1 {
     font-size: 1.25rem !important;
     color: #ff9925 !important
@@ -17,4 +21,8 @@ h1 {
 #dependencies .content {
     min-height: 200px;
     background-color: azure;
+}
+
+i.help {
+    color: lightgrey;
 }

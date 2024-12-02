@@ -18,6 +18,8 @@ package my.project.wicket.initializr;
 import com.giffing.wicket.spring.boot.starter.app.WicketBootStandardWebApplication;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesome6CssReference;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.icon.FontAwesomeSettings;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
 import org.apache.wicket.csp.CSPDirective;
@@ -52,6 +54,9 @@ public class InitializrApplication extends WicketBootStandardWebApplication {
         getCspSettings().blocking().add(CSPDirective.STYLE_SRC, "'self'", "fonts.googleapis.com");
         getCspSettings().blocking().add(CSPDirective.FONT_SRC, "fonts.gstatic.com");
         getCspSettings().blocking().add(CSPDirective.IMG_SRC, "'self'", "data:");
+
+        // Prepare the FontAwesome settings
+        FontAwesomeSettings.get(InitializrApplication.get()).setCssResourceReference(FontAwesome6CssReference.instance());
 
         // Prepare the Bootstrap settings
         final BootstrapSettings settings = new BootstrapSettings();
